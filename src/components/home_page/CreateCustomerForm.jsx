@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import BuildKit from '../../data/BuildKit';
 import UserKit from '../../data/UserKit';
+import styled from 'styled-components';
+
+const FormStyled = styled.form`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: fit-content;
+  gap: 10px;
+`;
 
 export default function CreateCustomerForm({ setshouldLoadCustomerList }) {
   const [name, setName] = useState('');
@@ -45,11 +53,11 @@ export default function CreateCustomerForm({ setshouldLoadCustomerList }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <FormStyled onSubmit={handleSubmit}>
       {inputObjects.map((inputItem, index) => {
         return buildKit.renderInput(index, inputItem[0], inputItem[1], inputItem[2]);
       })}
       <button type="submit">Add customer</button>
-    </form>
+    </FormStyled>
   );
 }

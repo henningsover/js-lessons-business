@@ -1,9 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const DivStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 15em;
+`;
+
+const InputStyled = styled.input``;
 
 export default class {
   renderInput(index, placeholder, stateVariable, setStateVariable) {
     return (
-      <div key={index}>
+      <DivStyled key={index}>
         <label>{placeholder}</label>
         <input
           placeholder={placeholder}
@@ -11,7 +20,7 @@ export default class {
           onChange={(e) => setStateVariable(e.target.value)}
           required
         />
-      </div>
+      </DivStyled>
     );
   }
 
