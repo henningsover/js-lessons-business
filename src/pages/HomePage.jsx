@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserKit from '../data/UserKit';
 
 export default function HomePage() {
+  const [customerList, setCustomerList] = useState(null);
   const userKit = new UserKit();
   const history = useHistory();
 
@@ -15,13 +16,22 @@ export default function HomePage() {
       .getCustomerList()
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.results);
+        setCustomerList(data.results);
+        console.log(data);
       });
   }
   return (
     <main>
       <h1>Home</h1>
       <button onClick={getCustomerList}>Get customer List</button>
+      {customerList &&
+        customerList.map((customer, index) => {
+          return (
+            <div key={index}>
+              <p>{customer.name}</p>
+            </div>
+          );
+        })}
     </main>
   );
 }
