@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserKit from '../data/UserKit';
+import { UserContext } from '../contexts/UserContext';
+import CreateCustomerForm from '../components/home_page/CreateCustomerForm';
 
 export default function HomePage() {
-  const [customerList, setCustomerList] = useState(null);
+  const { customerList, setCustomerList } = useContext(UserContext);
   const userKit = new UserKit();
   const history = useHistory();
 
@@ -17,13 +19,16 @@ export default function HomePage() {
       .then((res) => res.json())
       .then((data) => {
         setCustomerList(data.results);
-        console.log(data);
       });
   }
+
+  useEffect(() => {
+    getCustomerList();
+  }, []);
   return (
     <main>
       <h1>Home</h1>
-      <button onClick={getCustomerList}>Get customer List</button>
+      {/* <button onClick={getCustomerList}>Get customer List</button> */}
       {customerList &&
         customerList.map((customer, index) => {
           return (
@@ -32,6 +37,8 @@ export default function HomePage() {
             </div>
           );
         })}
+      <hr></hr>
+      <CreateCustomerForm />
     </main>
   );
 }

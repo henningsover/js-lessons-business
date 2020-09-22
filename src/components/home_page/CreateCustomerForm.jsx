@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import BuildKit from '../../data/BuildKit';
 import UserKit from '../../data/UserKit';
 
@@ -14,20 +15,20 @@ export default function CreateCustomerForm() {
 
   const userKit = new UserKit();
   const buildKit = new BuildKit();
-  console.log(userKit);
+  const history = useHistory();
 
   const inputObjects = [
     ['Name', name, setName],
     ['Organisation Number', organisationNr, setOrganisationNr],
-    ['VAT Number(Ex: SE000000000000)', vatNr, setVatNr],
+    ['VAT Number', vatNr, setVatNr],
     ['Reference', reference, setReference],
-    ['Payment Term(0)', paymentTerm, setPaymentTerm],
+    ['Payment Term', paymentTerm, setPaymentTerm],
     ['Website', website, setWebsite],
     ['Email', email, setEmail],
     ['Phone Number', phoneNumber, setPhoneNumber],
   ];
 
-  //Todo: Validate inputs to match API
+  //Todo: Make inputObjects contain objects with keys
   // const inputObjects = [
   //   { name: 'Name', stateVariable: name, setStateVariable: setName, inputType: 'text', maxLength: 50 },
   // ];
@@ -40,10 +41,7 @@ export default function CreateCustomerForm() {
     } else {
       userKit
         .createCustomer(name, organisationNr, vatNr, reference, paymentTerm, website, email, phoneNumber)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
+        .then(history.push('/home'));
     }
   }
 
