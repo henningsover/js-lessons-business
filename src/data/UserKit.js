@@ -55,6 +55,14 @@ export default class {
     });
   }
 
+  async deleteCustomer(id) {
+    const url = `${ROOT_URL}api/v1/customers/${id}/`;
+    return fetch(url, {
+      method: 'DELETE',
+      headers: this.getPrivateHeaders(),
+    });
+  }
+
   setToken(token) {
     localStorage.setItem('BUSINESS_TOKEN', token);
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UserKit from '../data/UserKit';
 import BuildKit from '../data/BuildKit';
+import DeleteButton from '../components/customer_details_page/DeleteButton';
 
 export default function CustomerDetailsPage(props) {
   const customerId = props.match.params.customerId;
@@ -55,6 +56,7 @@ export default function CustomerDetailsPage(props) {
               })}
             </tbody>
           </table>
+          <DeleteButton customerId={currentCustomer.id} />
         </div>
       )}
     </main>
