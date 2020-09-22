@@ -14,4 +14,13 @@ export default class {
       </div>
     );
   }
+
+  renderVerticalTr(index, head, data) {
+    return (
+      <tr key={index}>
+        <th>{head}</th>
+        <td>{data}</td>
+      </tr>
+    );
+  }
 }

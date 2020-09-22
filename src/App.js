@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import StartPage from './pages/StartPage';
 import SimpleLayout from './components/header/SimpleLayout';
 import GlobalStyle from './theme/globalStyles';
+import CustomerDetailsPage from './pages/CustomerDetailsPage';
 function App() {
   const [customerList, setCustomerList] = useState(null);
   return (
@@ -15,25 +16,23 @@ function App() {
       <GlobalStyle />
       <UserContext.Provider value={{ customerList, setCustomerList }}>
         <Switch>
+          <Route
+            path="/customer/:customerId"
+            render={(props) => {
+              return <SimpleLayout mainContent={<CustomerDetailsPage {...props} />} />;
+            }}
+          ></Route>
           <Route path="/home">
-            <SimpleLayout>
-              <HomePage />
-            </SimpleLayout>
+            <SimpleLayout mainContent={<HomePage />} />
           </Route>
           <Route path="/login">
-            <SimpleLayout>
-              <LoginPage />
-            </SimpleLayout>
+            <SimpleLayout mainContent={<LoginPage />} />
           </Route>
           <Route path="/register">
-            <SimpleLayout>
-              <RegisterPage />
-            </SimpleLayout>
+            <SimpleLayout mainContent={<RegisterPage />} />
           </Route>
           <Route path="/">
-            <SimpleLayout>
-              <StartPage />
-            </SimpleLayout>
+            <SimpleLayout mainContent={<StartPage />} />
           </Route>
         </Switch>
       </UserContext.Provider>

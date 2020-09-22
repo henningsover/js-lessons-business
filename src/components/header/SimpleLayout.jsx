@@ -36,7 +36,7 @@ const Title = styled.div`
   }
 `;
 
-export default function SimpleLayout({ children }) {
+export default function SimpleLayout({ mainContent }) {
   return (
     <div>
       <HeaderStyled>
@@ -47,7 +47,7 @@ export default function SimpleLayout({ children }) {
           <NavBar />
         </HeaderWrapper>
       </HeaderStyled>
-      {children}
+      {mainContent}
     </div>
   );
 }

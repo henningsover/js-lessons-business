@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import BuildKit from '../../data/BuildKit';
 import UserKit from '../../data/UserKit';
 
-export default function CreateCustomerForm() {
+export default function CreateCustomerForm({ setshouldLoadCustomerList }) {
   const [name, setName] = useState('');
   const [organisationNr, setOrganisationNr] = useState('');
   const [vatNr, setVatNr] = useState('');
@@ -39,9 +39,8 @@ export default function CreateCustomerForm() {
     if (!VATreg.test(vatNr)) {
       console.log('VAT number not accepted');
     } else {
-      userKit
-        .createCustomer(name, organisationNr, vatNr, reference, paymentTerm, website, email, phoneNumber)
-        .then(history.push('/home'));
+      userKit.createCustomer(name, organisationNr, vatNr, reference, paymentTerm, website, email, phoneNumber);
+      setshouldLoadCustomerList(true);
     }
   }
 
