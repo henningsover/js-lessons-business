@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -13,7 +13,9 @@ li {
 }
 
 main {
-  margin-top: 3em;
+  height: 100vh;
+  padding-top: 3em;
+  background: #99ACB9;
 }
 
 `;

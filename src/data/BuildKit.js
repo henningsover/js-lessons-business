@@ -7,14 +7,24 @@ const DivStyled = styled.div`
   width: 15em;
 `;
 
-const InputStyled = styled.input``;
+const LabelStyled = styled.label`
+  margin-bottom: 10px;
+`;
+
+const InputStyled = styled.input`
+  padding: 0.5em;
+  color: #172341;
+  :focus {
+    outline: none;
+  }
+`;
 
 export default class {
   renderInput(index, placeholder, stateVariable, setStateVariable) {
     return (
       <DivStyled key={index}>
-        <label>{placeholder}</label>
-        <input
+        <LabelStyled>{placeholder}</LabelStyled>
+        <InputStyled
           placeholder={placeholder}
           value={stateVariable}
           onChange={(e) => setStateVariable(e.target.value)}

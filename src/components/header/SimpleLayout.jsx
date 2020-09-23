@@ -9,7 +9,7 @@ const HeaderStyled = styled.header`
   width: 100%; 
   display flex;
   height: 3em;
-  background: #15498c;
+  background: #172341;
 `;
 const HeaderWrapper = styled.div`
   width: 90vw;

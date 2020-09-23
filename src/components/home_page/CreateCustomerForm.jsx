@@ -4,13 +4,14 @@ import { UserContext } from '../../contexts/UserContext';
 import BuildKit from '../../data/BuildKit';
 import UserKit from '../../data/UserKit';
 import styled from 'styled-components';
+import { FormStyled } from '../../components/global/GlobalStyledComponents';
 
-const FormStyled = styled.form`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: fit-content;
-  gap: 10px;
-`;
+// const FormStyled = styled.form`
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   width: fit-content;
+//   gap: 10px;
+// `;
 
 export default function CreateCustomerForm() {
   const [name, setName] = useState('Andss');
