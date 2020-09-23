@@ -48,7 +48,7 @@ export default class {
   async createCustomer(name, organisationNr, vatNr, reference, paymentTerm, website, email, phoneNumber) {
     const url = `${ROOT_URL}api/v1/customers`;
     const payload = { name, organisationNr, vatNr, reference, paymentTerm, website, email, phoneNumber };
-    return fetch(url, {
+    return await fetch(url, {
       method: 'POST',
       headers: this.getPrivateHeaders(),
       body: JSON.stringify(payload),
@@ -64,7 +64,7 @@ export default class {
 
   async deleteCustomer(id) {
     const url = `${ROOT_URL}api/v1/customers/${id}/`;
-    return fetch(url, {
+    return await fetch(url, {
       method: 'DELETE',
       headers: this.getPrivateHeaders(),
     });
