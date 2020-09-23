@@ -16,6 +16,7 @@ main {
   height: 100vh;
   padding-top: 3em;
   background: #99ACB9;
+  color: #172341
 }
 
 `;
