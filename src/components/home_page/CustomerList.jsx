@@ -7,6 +7,8 @@ import styled from 'styled-components';
 const TableFixHead = styled.div`
   overflow-y: auto;
   height: 190px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 
   thead th {
     position: sticky;
@@ -50,6 +52,7 @@ export default function CustomerList() {
             <th>Name</th>
             <th>Organisation Number</th>
             <th>Reference</th>
+            <th></th>
           </tr>
         </thead>
         <TBodyStyled>
@@ -57,13 +60,14 @@ export default function CustomerList() {
             customerList.map((customer, index) => {
               return (
                 <tr key={index}>
-                  <td>
-                    <Link to={`/customer/${customer.id}`}>
-                      <span>{customer.name}</span>
-                    </Link>
-                  </td>
+                  <td>{customer.name}</td>
                   <td>{customer.organisationNr}</td>
                   <td>{customer.reference}</td>
+                  <td>
+                    <Link to={`/customer/${customer.id}`}>
+                      <span>View Details</span>
+                    </Link>
+                  </td>
                 </tr>
               );
             })}
