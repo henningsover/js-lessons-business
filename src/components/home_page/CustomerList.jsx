@@ -28,7 +28,7 @@ const TableStyled = styled.table`
   }
 
   th {
-    background: #15498c;
+    background: #2b3b63;
     color: white;
   }
 `;
@@ -36,6 +36,9 @@ const TableStyled = styled.table`
 const TBodyStyled = styled.tbody`
   tr:nth-child(even) {
     background: #e3e3ea;
+  }
+  tr:nth-child(odd) {
+    background: whitesmoke;
   }
 `;
 

@@ -6,12 +6,10 @@ import UserKit from '../../data/UserKit';
 import styled from 'styled-components';
 import { FormStyled } from '../../components/global/GlobalStyledComponents';
 
-// const FormStyled = styled.form`
-//   display: grid;
-//   grid-template-columns: repeat(2, 1fr);
-//   width: fit-content;
-//   gap: 10px;
-// `;
+const CustomerForm = styled(FormStyled)`
+  padding: 0.5em;
+  background: whitesmoke;
+`;
 
 export default function CreateCustomerForm() {
   const [name, setName] = useState('Andss');
@@ -73,11 +71,11 @@ export default function CreateCustomerForm() {
   }
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <CustomerForm onSubmit={handleSubmit}>
       {inputObjects.map((inputItem, index) => {
         return buildKit.renderInput(index, inputItem[0], inputItem[1], inputItem[2]);
       })}
       <button type="submit">Add customer</button>
-    </FormStyled>
+    </CustomerForm>
   );
 }
