@@ -12,11 +12,19 @@ import CustomerDetailsPage from './pages/CustomerDetailsPage';
 function App() {
   const [customerList, setCustomerList] = useState(null);
   const [shouldLoadCustomerList, setShouldLoadCustomerList] = useState(true);
+  const [userData, setUserData] = useState(null);
   return (
     <div className="App">
       <GlobalStyle />
       <UserContext.Provider
-        value={{ customerList, setCustomerList, shouldLoadCustomerList, setShouldLoadCustomerList }}
+        value={{
+          customerList,
+          setCustomerList,
+          shouldLoadCustomerList,
+          setShouldLoadCustomerList,
+          userData,
+          setUserData,
+        }}
       >
         <Switch>
           <Route

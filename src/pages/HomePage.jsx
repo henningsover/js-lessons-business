@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import UserKit from '../data/UserKit';
@@ -7,19 +7,10 @@ import CreateCustomerForm from '../components/home_page/CreateCustomerForm';
 import CustomerList from '../components/home_page/CustomerList';
 
 import { CenteredContainer } from '../components/global/GlobalStyledComponents';
+import LoggedInTopContent from '../components/global/LoggedInTopContent';
 
 const ContentWrapper = styled(CenteredContainer)`
   padding-top: 1em;
-`;
-
-const TopContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-`;
-
-const MainContentContainer = styled.div`
-  display: flex;
 `;
 
 const CustomerListContainer = styled.div`
@@ -27,10 +18,27 @@ const CustomerListContainer = styled.div`
   margin-right: 20px;
 `;
 
-export default function HomePage() {
-  const { customerList, setCustomerList, shouldLoadCustomerList, setShouldLoadCustomerList } = useContext(UserContext);
+const CreateCustomerContainer = styled.div`
+  width: fit-content;
+`;
+const CreateCustomerTitle = styled.h3`
+  padding: 0.5em;
+  background: #2b3b63;
+  color: whitesmoke;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+`;
 
-  const [userData, setUserData] = useState(null);
+export default function HomePage() {
+  const {
+    customerList,
+    setCustomerList,
+    shouldLoadCustomerList,
+    setShouldLoadCustomerList,
+    userData,
+    setUserData,
+  } = useContext(UserContext);
+
   const userKit = new UserKit();
   const history = useHistory();
 
@@ -80,23 +88,15 @@ export default function HomePage() {
   return (
     <main>
       <ContentWrapper>
-        <TopContainer>
-          <h1>Home</h1>
-          {userData && (
-            <div>
-              <p>{`Logged in as: ${userData.firstName} ${userData.lastName}`} </p>
-              <p>{`Email: ${userData.email}`}</p>
-            </div>
-          )}
-        </TopContainer>
+        <LoggedInTopContent pageTitle="Home" />
         <CustomerListContainer>
           <h3>Customers:</h3>
           {customerList ? <CustomerList /> : <span>No customers yet</span>}
         </CustomerListContainer>
-        <div>
-          <h3>Create new customer:</h3>
+        <CreateCustomerContainer>
+          <CreateCustomerTitle>Create new customer:</CreateCustomerTitle>
           <CreateCustomerForm />
-        </div>
+        </CreateCustomerContainer>
       </ContentWrapper>
     </main>
   );
