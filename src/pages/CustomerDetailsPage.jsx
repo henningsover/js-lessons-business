@@ -1,7 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import UserKit from '../data/UserKit';
 import BuildKit from '../data/BuildKit';
 import DeleteButton from '../components/customer_details_page/DeleteButton';
+import LoggedInTopContent from '../components/global/LoggedInTopContent';
+import { CenteredContainer } from '../components/global/GlobalStyledComponents';
+
+const ContentWrapper = styled(CenteredContainer)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+  padding: 2em;
+  width: 50vw;
+  background: whitesmoke;
+  color: #172341;
+  border-radius: 10px;
+  -webkit-box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
+  -moz-box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
+  box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
+`;
 
 export default function CustomerDetailsPage(props) {
   const customerId = props.match.params.customerId;
@@ -46,19 +65,24 @@ export default function CustomerDetailsPage(props) {
   console.log(currentCustomer);
   return (
     <main>
-      {customerArr && (
-        <div>
-          <h1>{currentCustomer.name}</h1>
-          <table>
-            <tbody>
-              {customerArr.map((row, index) => {
-                return buildKit.renderVerticalTr(index, row.head, row.data);
-              })}
-            </tbody>
-          </table>
-          <DeleteButton customerId={currentCustomer.id} />
-        </div>
-      )}
+      <CenteredContainer>
+        <LoggedInTopContent pageTitle="Customer Details" />
+        <ContentWrapper>
+          {customerArr && (
+            <div>
+              <h1>{currentCustomer.name}</h1>
+              <table>
+                <tbody>
+                  {customerArr.map((row, index) => {
+                    return buildKit.renderVerticalTr(index, row.head, row.data);
+                  })}
+                </tbody>
+              </table>
+              <DeleteButton customerId={currentCustomer.id} />
+            </div>
+          )}
+        </ContentWrapper>
+      </CenteredContainer>
     </main>
   );
 }
