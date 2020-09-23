@@ -53,14 +53,28 @@ export default function HomePage() {
       .getCustomerList()
       .then((res) => res.json())
       .then((data) => {
-        setCustomerList(data.results);
-        console.log(data.results);
+        if (data.results.length > 0) {
+          setCustomerList(data.results);
+        } else {
+          setCustomerList(null);
+        }
+        console.log(data.results.length);
       });
   }
 
   useEffect(() => {
-    getCustomerList();
-    getUser();
+    if (shouldLoadCustomerList) {
+      getCustomerList();
+      setShouldLoadCustomerList(false);
+      console.log('Loaded customer list');
+    }
+  }, [shouldLoadCustomerList]);
+
+  useEffect(() => {
+    if (!userData) {
+      getUser();
+    }
+    // getCustomerList();
   }, []);
 
   return (
@@ -75,16 +89,14 @@ export default function HomePage() {
             </div>
           )}
         </TopContainer>
-        <MainContentContainer>
-          <CustomerListContainer>
-            <h3>Customers:</h3>
-            {customerList ? <CustomerList /> : <span>No customers yet</span>}
-          </CustomerListContainer>
-          <div>
-            <h3>Create new customer:</h3>
-            <CreateCustomerForm setshouldLoadCustomerList={setshouldLoadCustomerList} />
-          </div>
-        </MainContentContainer>
+        <CustomerListContainer>
+          <h3>Customers:</h3>
+          {customerList ? <CustomerList /> : <span>No customers yet</span>}
+        </CustomerListContainer>
+        <div>
+          <h3>Create new customer:</h3>
+          <CreateCustomerForm />
+        </div>
       </ContentWrapper>
     </main>
   );
