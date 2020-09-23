@@ -28,8 +28,8 @@ const CustomerListContainer = styled.div`
 `;
 
 export default function HomePage() {
-  const { customerList, setCustomerList } = useContext(UserContext);
-  const [shouldLoadCustomerList, setshouldLoadCustomerList] = useState(true);
+  const { customerList, setCustomerList, shouldLoadCustomerList, setShouldLoadCustomerList } = useContext(UserContext);
+
   const [userData, setUserData] = useState(null);
   const userKit = new UserKit();
   const history = useHistory();

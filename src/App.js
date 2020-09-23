@@ -11,10 +11,13 @@ import GlobalStyle from './theme/globalStyles';
 import CustomerDetailsPage from './pages/CustomerDetailsPage';
 function App() {
   const [customerList, setCustomerList] = useState(null);
+  const [shouldLoadCustomerList, setShouldLoadCustomerList] = useState(true);
   return (
     <div className="App">
       <GlobalStyle />
-      <UserContext.Provider value={{ customerList, setCustomerList }}>
+      <UserContext.Provider
+        value={{ customerList, setCustomerList, shouldLoadCustomerList, setShouldLoadCustomerList }}
+      >
         <Switch>
           <Route
             path="/customer/:customerId"
