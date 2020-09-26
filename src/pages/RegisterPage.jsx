@@ -11,13 +11,22 @@ const ContentWrapper = styled(CenteredContainer)`
   align-items: center;
   margin-top: 3em;
   padding: 2em;
-  width: 50vw;
+  width: 100vw;
   background: whitesmoke;
   color: #172341;
-  border-radius: 10px;
+  border-radius: 0px;
   -webkit-box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
   -moz-box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
   box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
+  @media (min-width: 770px) {
+    width: 720px;
+    border-radius: 10px;
+  }
+`;
+
+const TopContent = styled.div`
+  margin: 10px 0 1.5em 0;
+  text-align: center;
 `;
 
 const SubmitButton = styled.button`
@@ -61,8 +70,10 @@ export default function RegisterPage() {
   return (
     <main>
       <ContentWrapper>
-        <h2>Register</h2>
-        <p>Enter details to register</p>
+        <TopContent>
+          <h2>Register</h2>
+          <p>Enter details to register</p>
+        </TopContent>
         <FormStyled onSubmit={handleSubmit}>
           {inputObjects.map((inputItem, index) => {
             return buildKit.renderInput(index, inputItem[0], inputItem[1], inputItem[2]);

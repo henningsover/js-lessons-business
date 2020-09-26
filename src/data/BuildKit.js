@@ -4,7 +4,15 @@ import styled from 'styled-components';
 const DivStyled = styled.div`
   display: flex;
   flex-direction: column;
-  width: 15em;
+  width: 100%;
+  // grid-column-start: 1;
+  // grid-column-end: 3;
+  margin: 10px 0;
+  @media (min-width: 770px) {
+    grid-column-start: unset;
+    grid-column-end: unset;
+    margin: unset;
+  }
 `;
 
 const LabelStyled = styled.label`

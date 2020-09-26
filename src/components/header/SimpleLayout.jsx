@@ -10,13 +10,18 @@ const HeaderStyled = styled.header`
   display flex;
   height: 3em;
   background: #172341;
+  z-index: 4;
 `;
 const HeaderWrapper = styled.div`
-  width: 90vw;
-  margin: auto;
+  width: 100%;
+  padding: 0 0.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (min-width: 800px) {
+    width: 90vw;
+    margin: auto;
+  }
 `;
 
 const Title = styled.div`

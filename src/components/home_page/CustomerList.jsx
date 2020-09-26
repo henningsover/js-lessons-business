@@ -6,10 +6,11 @@ import styled from 'styled-components';
 
 const TableFixHead = styled.div`
   overflow-y: auto;
-  height: 190px;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-
+  max-height: 50vh;
+  font-size: 12px;
+  @media (min-width: 800px) {
+    font-size: 15px;
+  }
   thead th {
     position: sticky;
     top: 0;
@@ -28,7 +29,7 @@ const TableStyled = styled.table`
   }
 
   th {
-    background: #2b3b63;
+    background: #687698;
     color: white;
   }
 `;
@@ -53,7 +54,7 @@ export default function CustomerList() {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Organisation Number</th>
+            <th>Org. Number</th>
             <th>Reference</th>
             <th></th>
           </tr>
@@ -68,7 +69,7 @@ export default function CustomerList() {
                   <td>{customer.reference}</td>
                   <td>
                     <Link to={`/customer/${customer.id}`}>
-                      <span>View Details</span>
+                      <span>Details</span>
                     </Link>
                   </td>
                 </tr>

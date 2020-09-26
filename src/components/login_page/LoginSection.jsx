@@ -1,48 +1,74 @@
-import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
-import UserKit from "../../data/UserKit";
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import styled from 'styled-components';
+import UserKit from '../../data/UserKit';
+import BuildKit from '../../data/BuildKit';
+import { FormStyled, CenteredContainer } from '../../components/global/GlobalStyledComponents';
+
+const ContentWrapper = styled(CenteredContainer)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+  padding: 2em;
+  width: 100vw;
+  background: whitesmoke;
+  color: #172341;
+  border-radius: 0px;
+  -webkit-box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
+  -moz-box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
+  box-shadow: -5px 5px 6px 1px rgba(23, 35, 65, 0.83);
+  @media (min-width: 770px) {
+    width: 720px;
+    border-radius: 10px;
+  }
+`;
+
+const Title = styled.h2`
+  margin: 10px 0 1.5em 0;
+`;
+
+const LoginButton = styled.button`
+  grid-column-start: 2;
+  width: 10em;
+  padding: 0.8em 0;
+  justify-self: end;
+  margin-top: 10px;
+  background: #496385;
+  color: whitesmoke;
+  border-style: none;
+  &:hover {
+    background: #5981b5;
+    transition: background-color 0.2s;
+  }
+`;
 
 export default function LoginSection() {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
   const userKit = new UserKit();
+  const buildKit = new BuildKit();
   const history = useHistory();
-  function handleLogin() {
+  function handleLogin(event) {
+    event.preventDefault();
     userKit
       .login(loginEmail, loginPassword)
       .then((res) => res.json())
       .then((data) => {
         userKit.setToken(data.token);
-        history.push("/home");
+        history.push('/home');
       });
   }
   return (
-    <section>
-      <h2>Login</h2>
-      <div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            placeholder="john.doe@mail.com"
-            type="email"
-            value={loginEmail}
-            onChange={(e) => setLoginEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            placeholder="Password"
-            type="password"
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
-          />
-        </div>
-        <button onClick={handleLogin}>Login</button>
-      </div>
+    <ContentWrapper as="section">
+      <Title>Login</Title>
+      <FormStyled onSubmit={handleLogin}>
+        {buildKit.renderInput(1, 'john.doe@mail.com', loginEmail, setLoginEmail)}
+        {buildKit.renderInput(2, 'Password', loginPassword, setLoginPassword)}
+        <LoginButton type="submit">Login</LoginButton>
+      </FormStyled>
       <Link to="/register">Register new user</Link>
-    </section>
+    </ContentWrapper>
   );
 }

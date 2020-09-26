@@ -11,7 +11,25 @@ const CustomerForm = styled(FormStyled)`
   background: whitesmoke;
 `;
 
-export default function CreateCustomerForm() {
+const AddCustomerButton = styled.button`
+  place-self: end;
+  width: 10em;
+  padding: 0.8em 0;
+  justify-self: end;
+  margin-top: 10px;
+  background: #496385;
+  color: whitesmoke;
+  border-style: none;
+  &:hover {
+    background: #5981b5;
+    transition: background-color 0.2s;
+  }
+  @media (min-width: 450px) {
+    grid-column-start: 2;
+  }
+`;
+
+export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
   const [name, setName] = useState('Andss');
   const [organisationNr, setOrganisationNr] = useState('12313');
   const [vatNr, setVatNr] = useState('SE827936876514');
@@ -57,6 +75,7 @@ export default function CreateCustomerForm() {
           if (res.ok) {
             console.log('ok');
             setShouldLoadCustomerList(true);
+            setShouldShowCreateUserForm(false);
             setName('');
             setOrganisationNr('');
             setVatNr('');
@@ -75,7 +94,7 @@ export default function CreateCustomerForm() {
       {inputObjects.map((inputItem, index) => {
         return buildKit.renderInput(index, inputItem[0], inputItem[1], inputItem[2]);
       })}
-      <button type="submit">Add customer</button>
+      <AddCustomerButton type="submit">Add customer</AddCustomerButton>
     </CustomerForm>
   );
 }
