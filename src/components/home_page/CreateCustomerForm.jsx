@@ -90,6 +90,7 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
       state: paymentTerm,
       setState: setPaymentTerm,
       maxValue: 2147483647,
+      minValue: 0,
     },
     {
       label: 'Website',
@@ -147,8 +148,7 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
     <CustomerForm onSubmit={handleSubmit}>
       {inputObjects.map((inputItem, index) => {
         const maxValue = inputItem.maxValue ? inputItem.maxValue : null;
-        console.log(inputItem.setState);
-        console.log(inputItem.state);
+        const minValue = inputItem.minValue ? inputItem.minValue : null;
         return buildKit.renderInput(
           index,
           inputItem.label,
@@ -157,7 +157,8 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
           inputItem.maxLength,
           inputItem.state,
           inputItem.setState,
-          maxValue
+          maxValue,
+          minValue
         );
       })}
       <AddCustomerButton type="submit">Add customer</AddCustomerButton>
