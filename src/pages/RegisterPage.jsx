@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import UserKit from '../data/UserKit';
-import BuildKit from '../data/BuildKit';
-import { FormStyled, CenteredContainer } from '../components/global/GlobalStyledComponents';
+import styled from 'styled-components';
+import { CenteredContainer } from '../components/global/GlobalStyledComponents';
+import RegisterForm from '../components/register_page/RegisterForm';
 
 const ContentWrapper = styled(CenteredContainer)`
   display: flex;
@@ -30,73 +30,20 @@ const TopContent = styled.div`
   text-align: center;
 `;
 
-const SubmitButton = styled.button`
-  grid-column-start: 2;
-  width: 10em;
-  padding: 0.8em 0;
-  justify-self: end;
-  margin-top: 10px;
-  background: #496385;
-  color: whitesmoke;
-  border-style: none;
-`;
-
 const Title = styled.h2`
   margin-bottom: 0.5em;
 `;
 
 export default function RegisterPage() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [organisationName, setOrganisationName] = useState('');
-  const [organisationKind, setOrganisationKind] = useState('');
+  const userKit = new UserKit();
+  const loginToken = userKit.getToken();
+  const history = useHistory();
+  if (loginToken) {
+    history.push('/home');
+  }
   const [isRegistered, setIsRegistered] = useState(false);
   const [registerMessage, setRegisterMessage] = useState('Enter details to register');
 
-  const userKit = new UserKit();
-  const buildKit = new BuildKit();
-
-  const history = useHistory();
-
-  const inputObjects = [
-    { label: 'First Name', type: 'text', placeholder: 'John', maxLength: 30, state: firstName, setState: setFirstName },
-    { label: 'Last Name', type: 'text', placeholder: 'Doe', maxLength: 30, state: lastName, setState: setLastName },
-    {
-      label: 'Email',
-      type: 'email',
-      placeholder: 'john.doe@mail.com',
-      maxLength: 254,
-      state: email,
-      setState: setEmail,
-    },
-    { label: 'Password', type: 'text', placeholder: '****', maxLength: 60, state: password, setState: setPassword },
-    {
-      label: 'Organisation Name',
-      type: 'text',
-      placeholder: `JohnDoe's`,
-      maxLength: 100,
-      state: organisationName,
-      setState: setOrganisationName,
-    },
-    {
-      label: 'Organisation Kind',
-      type: 'number',
-      placeholder: '(1,2 or 3)',
-      maxLength: 1,
-      state: organisationKind,
-      setState: setOrganisationKind,
-      maxValue: 3,
-    },
-  ];
-  function handleSubmit(event) {
-    event.preventDefault();
-    userKit.register(firstName, lastName, email, password, organisationName, organisationKind).then((res) => {
-      setIsRegistered(true);
-      setRegisterMessage('Thanks for signig up! Please check your inbox for an activation link');
-    });
-  }
   return (
     <main>
       <ContentWrapper>
@@ -104,26 +51,7 @@ export default function RegisterPage() {
           <Title>Register</Title>
           <p>{registerMessage}</p>
         </TopContent>
-        {!isRegistered && (
-          <FormStyled onSubmit={handleSubmit}>
-            {inputObjects.map((inputItem, index) => {
-              const maxValue = inputItem.maxValue ? inputItem.maxValue : null;
-              console.log(inputItem.setState);
-              console.log(inputItem.state);
-              return buildKit.renderInput(
-                index,
-                inputItem.label,
-                inputItem.type,
-                inputItem.placeholder,
-                inputItem.maxLength,
-                inputItem.state,
-                inputItem.setState,
-                maxValue
-              );
-            })}
-            <SubmitButton type="submit">Register</SubmitButton>
-          </FormStyled>
-        )}
+        {!isRegistered && <RegisterForm setIsRegistered={setIsRegistered} setRegisterMessage={setRegisterMessage} />}
       </ContentWrapper>
     </main>
   );
