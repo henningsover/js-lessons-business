@@ -32,7 +32,7 @@ const AddCustomerButton = styled.button`
 export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
   const [name, setName] = useState('Andss');
   const [organisationNr, setOrganisationNr] = useState('12313');
-  const [vatNr, setVatNr] = useState('SE827936876514');
+  const [vatNr, setVatNr] = useState('SE8279368765');
   const [reference, setReference] = useState('dbjalsb');
   const [paymentTerm, setPaymentTerm] = useState('2');
   const [website, setWebsite] = useState('ascascasc');
@@ -45,15 +45,69 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
   const buildKit = new BuildKit();
   const history = useHistory();
 
+  // const inputObjects = [
+  //   ['Name', name, setName],
+  //   ['Organisation Number', organisationNr, setOrganisationNr],
+  //   ['VAT Number', vatNr, setVatNr],
+  //   ['Reference', reference, setReference],
+  //   ['Payment Term', paymentTerm, setPaymentTerm],
+  //   ['Website', website, setWebsite],
+  //   ['Email', email, setEmail],
+  //   ['Phone Number', phoneNumber, setPhoneNumber],
+  // ];
   const inputObjects = [
-    ['Name', name, setName],
-    ['Organisation Number', organisationNr, setOrganisationNr],
-    ['VAT Number', vatNr, setVatNr],
-    ['Reference', reference, setReference],
-    ['Payment Term', paymentTerm, setPaymentTerm],
-    ['Website', website, setWebsite],
-    ['Email', email, setEmail],
-    ['Phone Number', phoneNumber, setPhoneNumber],
+    { label: 'Name', type: 'text', placeholder: 'John Doe', maxLength: 50, state: name, setState: setName },
+    {
+      label: 'Org. Number',
+      type: 'number',
+      placeholder: '123...',
+      maxLength: 30,
+      state: organisationNr,
+      setState: setOrganisationNr,
+    },
+    {
+      label: 'VAT Number',
+      type: 'text',
+      placeholder: 'SE1234567890',
+      maxLength: 12,
+      state: vatNr,
+      setState: setVatNr,
+      maxValue: null,
+    },
+    {
+      label: 'Reference',
+      type: 'text',
+      placeholder: 'Reference Name',
+      maxLength: 50,
+      state: reference,
+      setState: setReference,
+    },
+    {
+      label: 'Payment Term',
+      type: 'number',
+      placeholder: '0-2147483647',
+      maxLength: 10,
+      state: paymentTerm,
+      setState: setPaymentTerm,
+      maxValue: 2147483647,
+    },
+    {
+      label: 'Website',
+      type: 'text',
+      placeholder: 'https://www.website.se',
+      maxLength: 50,
+      state: website,
+      setState: setWebsite,
+    },
+    { label: 'Email', type: 'email', placeholder: 'john@doe.com', maxLength: 254, state: email, setState: setEmail },
+    {
+      label: 'Phone Number',
+      type: 'text',
+      placeholder: '070-1234567',
+      maxLength: 20,
+      state: phoneNumber,
+      setState: setPhoneNumber,
+    },
   ];
 
   //Todo: Make inputObjects contain objects with keys
@@ -67,7 +121,7 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
     event.preventDefault();
     const VATreg = /^(SE)?[0-9]{10}$/;
     if (!VATreg.test(vatNr)) {
-      console.log('VAT number not accepted');
+      alert(`VAT number incorrect, follow pattern (SE1234567890)`);
     } else {
       userKit
         .createCustomer(name, organisationNr, vatNr, reference, paymentTerm, website, email, phoneNumber)
@@ -92,7 +146,19 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
   return (
     <CustomerForm onSubmit={handleSubmit}>
       {inputObjects.map((inputItem, index) => {
-        return buildKit.renderInput(index, inputItem[0], inputItem[1], inputItem[2]);
+        const maxValue = inputItem.maxValue ? inputItem.maxValue : null;
+        console.log(inputItem.setState);
+        console.log(inputItem.state);
+        return buildKit.renderInput(
+          index,
+          inputItem.label,
+          inputItem.type,
+          inputItem.placeholder,
+          inputItem.maxLength,
+          inputItem.state,
+          inputItem.setState,
+          maxValue
+        );
       })}
       <AddCustomerButton type="submit">Add customer</AddCustomerButton>
     </CustomerForm>

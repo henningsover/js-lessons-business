@@ -72,8 +72,8 @@ export default function LoginSection() {
     <ContentWrapper as="section">
       <Title>Login</Title>
       <LoginForm onSubmit={handleLogin}>
-        {buildKit.renderInput(1, 'john.doe@mail.com', loginEmail, setLoginEmail)}
-        {buildKit.renderInput(2, 'Password', loginPassword, setLoginPassword)}
+        {buildKit.renderInput(1, 'Email', 'email', 'john.doe@mail.com', 245, loginEmail, setLoginEmail)}
+        {buildKit.renderInput(2, 'Password', 'password', '****', 100, loginPassword, setLoginPassword)}
         <LoginButton type="submit">Login</LoginButton>
       </LoginForm>
       <Link to="/register">Register new user</Link>

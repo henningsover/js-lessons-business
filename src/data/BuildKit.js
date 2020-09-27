@@ -28,15 +28,18 @@ const InputStyled = styled.input`
 `;
 
 export default class {
-  renderInput(index, placeholder, stateVariable, setStateVariable) {
+  renderInput(index, label, type, placeholder, maxLength, stateVariable, setStateVariable, maxValue) {
     return (
       <DivStyled key={index}>
-        <LabelStyled>{placeholder}</LabelStyled>
+        <LabelStyled>{label}</LabelStyled>
         <InputStyled
+          type={type}
           placeholder={placeholder}
           value={stateVariable}
           onChange={(e) => setStateVariable(e.target.value)}
           required
+          maxLength={maxLength}
+          max={maxValue}
         />
       </DivStyled>
     );
