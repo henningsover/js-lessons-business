@@ -36,7 +36,7 @@ const CreateCustomerContainer = styled.div`
     width: 720px;
     padding: 2em;
     position: absolute;
-    top: 36px;
+    top: 40px;
     right: 0px;
   }
 `;
@@ -64,8 +64,20 @@ const CustomersBottom = styled.div`
 `;
 
 const ToggleModalButton = styled.button`
-  width: 12em;
-  text-align: center;
+  background: #687698;
+  border-style: none;
+  color: whitesmoke;
+  padding: 5px 5px;
+  font-size: 13px;
+  width: 10em;
+  margin: 10px 0 5px 0;
+  @media (min-width: 800px) {
+    margin: 0;
+  }
+  &:hover {
+    background: #868fa4;
+    transition: background-color 0.2s;
+  }
 `;
 
 const CreateCustomerTitle = styled.h2`
@@ -159,8 +171,8 @@ export default function HomePage() {
                 <CreateCustomerForm setShouldShowCreateUserForm={setShouldShowCreateUserForm} />
               </CreateCustomerContainer>
             )}
-            {customerList ? <CustomerList /> : <span>No customers yet</span>}
-            <CustomersBottom />
+            {customerList && <CustomerList />}
+            {customerList && <CustomersBottom />}
           </CustomersContainer>
         </div>
       </ContentWrapper>

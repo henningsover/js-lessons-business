@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import UserKit from '../../data/UserKit';
 import BuildKit from '../../data/BuildKit';
+import { UserContext } from '../../contexts/UserContext';
 import { FormStyled, CenteredContainer } from '../../components/global/GlobalStyledComponents';
 
 const ContentWrapper = styled(CenteredContainer)`
@@ -13,6 +14,7 @@ const ContentWrapper = styled(CenteredContainer)`
   margin-top: 3em;
   padding: 2em;
   width: 100vw;
+  height: 370px;
   background: whitesmoke;
   color: #172341;
   border-radius: 0px;
@@ -27,10 +29,13 @@ const ContentWrapper = styled(CenteredContainer)`
 
 const LoginForm = styled(FormStyled)`
   display: flex;
+  max-width: 20em;
   gap: 10px;
   grid-template-columns: 1fr 1fr;
-  width: 50%;
   margin-bottom: 0.5em;
+  @media (min-width: 800px) {
+    width: 50%;
+  }
 `;
 
 const Title = styled.h2`
@@ -52,12 +57,29 @@ const LoginButton = styled.button`
   }
 `;
 
+const RegisterLinkContainer = styled.div`
+  height: 100%;
+  background: ;
+  a {
+    display: flex;
+    color: #172341;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.3rem 0.4rem;
+    &:hover {
+      font-size: 18px;
+      // transition: font-size 1s;
+    }
+  }
+`;
+
 export default function LoginSection() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const userKit = new UserKit();
   const buildKit = new BuildKit();
   const history = useHistory();
+
   function handleLogin(event) {
     event.preventDefault();
     userKit
@@ -76,7 +98,9 @@ export default function LoginSection() {
         {buildKit.renderInput(2, 'Password', 'password', '****', 100, loginPassword, setLoginPassword)}
         <LoginButton type="submit">Login</LoginButton>
       </LoginForm>
-      <Link to="/register">Register new user</Link>
+      <RegisterLinkContainer>
+        <Link to="/register">Register new user</Link>
+      </RegisterLinkContainer>
     </ContentWrapper>
   );
 }
