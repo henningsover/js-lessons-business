@@ -5,6 +5,7 @@ import BuildKit from '../data/BuildKit';
 import DeleteButton from '../components/customer_details_page/DeleteButton';
 import LoggedInTopContent from '../components/global/LoggedInTopContent';
 import { CenteredContainer } from '../components/global/GlobalStyledComponents';
+import { Link } from 'react-router-dom';
 
 const DetailsCard = styled(CenteredContainer)`
   display: flex;
@@ -34,7 +35,9 @@ const CustomerTable = styled.table`
 `;
 
 const CardHead = styled.div`
-  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8em 0.5em;
   background: #2b3b63;
   color: whitesmoke;
   @media (min-width: 800px) {
@@ -50,6 +53,23 @@ const CardContent = styled.div`
   @media (min-width: 800px) {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+  }
+`;
+
+const CloseLink = styled.div`
+  height: 100%;
+  background: ;
+  a {
+    display: flex;
+    background: #687698;
+    color: whitesmoke;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.3rem 0.4rem;
+    &:hover {
+      background: #868fa4;
+      transition: background-color 0.2s;
+    }
   }
 `;
 
@@ -104,6 +124,9 @@ export default function CustomerDetailsPage(props) {
           <DetailsCard>
             <CardHead>
               <Title>{currentCustomer.name}</Title>
+              <CloseLink>
+                <Link to="/home">Close</Link>
+              </CloseLink>
             </CardHead>
             <CardContent>
               <CustomerTable>
