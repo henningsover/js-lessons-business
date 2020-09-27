@@ -25,6 +25,14 @@ const ContentWrapper = styled(CenteredContainer)`
   }
 `;
 
+const LoginForm = styled(FormStyled)`
+  display: flex;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  width: 50%;
+  margin-bottom: 0.5em;
+`;
+
 const Title = styled.h2`
   margin: 10px 0 1.5em 0;
 `;
@@ -33,7 +41,7 @@ const LoginButton = styled.button`
   grid-column-start: 2;
   width: 10em;
   padding: 0.8em 0;
-  justify-self: end;
+  place-self: end;
   margin-top: 10px;
   background: #496385;
   color: whitesmoke;
@@ -63,11 +71,11 @@ export default function LoginSection() {
   return (
     <ContentWrapper as="section">
       <Title>Login</Title>
-      <FormStyled onSubmit={handleLogin}>
+      <LoginForm onSubmit={handleLogin}>
         {buildKit.renderInput(1, 'john.doe@mail.com', loginEmail, setLoginEmail)}
         {buildKit.renderInput(2, 'Password', loginPassword, setLoginPassword)}
         <LoginButton type="submit">Login</LoginButton>
-      </FormStyled>
+      </LoginForm>
       <Link to="/register">Register new user</Link>
     </ContentWrapper>
   );

@@ -20,7 +20,6 @@ const CustomersContainer = styled.div`
 
 const CreateCustomerContainer = styled.div`
   z-index: 3;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +36,7 @@ const CreateCustomerContainer = styled.div`
     width: 720px;
     padding: 2em;
     position: absolute;
-    top: 38px;
+    top: 36px;
     right: 0px;
   }
 `;
