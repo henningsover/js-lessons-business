@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
-import { Link, useHistory } from 'react-router-dom';
-import UserKit from '../../data/UserKit';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const TableFixHead = styled.div`
@@ -43,10 +42,27 @@ const TBodyStyled = styled.tbody`
   }
 `;
 
+const DetailsLinkContainer = styled.div`
+  height: 100%;
+  background: ;
+  width: fit-content;
+  a {
+    display: flex;
+    background: #4a66aa;
+    color: whitesmoke;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.3rem 0.4rem;
+    &:hover {
+      background: #758fce;
+      color: whitesmoke;
+      transition: all 0.2s;
+    }
+  }
+`;
+
 export default function CustomerList() {
-  const { customerList, setCustomerList } = useContext(UserContext);
-  const userKit = new UserKit();
-  const history = useHistory();
+  const { customerList } = useContext(UserContext);
 
   return (
     <TableFixHead>
@@ -68,9 +84,11 @@ export default function CustomerList() {
                   <td>{customer.organisationNr}</td>
                   <td>{customer.reference}</td>
                   <td>
-                    <Link to={`/customer/${customer.id}`}>
-                      <span>Details</span>
-                    </Link>
+                    <DetailsLinkContainer>
+                      <Link to={`/customer/${customer.id}`}>
+                        <span>Details</span>
+                      </Link>
+                    </DetailsLinkContainer>
                   </td>
                 </tr>
               );
