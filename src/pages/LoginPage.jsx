@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import ActivateAccountSection from "../components/login_page/ActivateAccountSection";
-import LoginSection from "../components/login_page/LoginSection";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import ActivateAccountSection from '../components/login_page/ActivateAccountSection';
+import LoginSection from '../components/login_page/LoginSection';
+import UserKit from '../data/UserKit';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -10,8 +11,17 @@ export default function LoginPage() {
   //Inbyggd javascriptmetod
   const urlParameters = new URLSearchParams(searchString);
   //hämtar och sätter uid och token
-  const [uid, setUid] = useState(urlParameters.get("uid"));
-  const [token, setToken] = useState(urlParameters.get("token"));
+  const [uid, setUid] = useState(urlParameters.get('uid'));
+  const [token, setToken] = useState(urlParameters.get('token'));
+
+  const userKit = new UserKit();
+  const loginToken = userKit.getToken();
+
+  useEffect(() => {
+    if (loginToken) {
+      history.push('/home');
+    }
+  }, []);
 
   return (
     <main>
