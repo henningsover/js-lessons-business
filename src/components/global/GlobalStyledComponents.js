@@ -23,10 +23,3 @@ export const FormStyled = styled.form`
     grid-template-columns: 1fr 1fr;
   }
 `;
-
-export const ButtonStyled = styled.button`
-  padding: 0.8em 0;
-  background: #496385;
-  color: whitesmoke;
-  border-style: none;
-`;
