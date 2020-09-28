@@ -28,7 +28,7 @@ const InputStyled = styled.input`
 `;
 
 export default class {
-  renderInput(index, label, type, placeholder, maxLength, stateVariable, setStateVariable, maxValue, minValue) {
+  renderInput(index, label, type, placeholder, minLength, maxLength, stateVariable, setStateVariable, pattern) {
     return (
       <DivStyled key={index}>
         <LabelStyled>{label}</LabelStyled>
@@ -38,9 +38,9 @@ export default class {
           value={stateVariable}
           onChange={(e) => setStateVariable(e.target.value)}
           required
+          minLength={minLength}
           maxLength={maxLength}
-          max={maxValue}
-          min={minValue}
+          pattern={pattern}
         />
       </DivStyled>
     );
