@@ -27,10 +27,35 @@ const DetailsCard = styled(CenteredContainer)`
 `;
 
 const CustomerTable = styled.table`
+  border-collapse: collapse;
+  width: 100%;
   text-align: left;
   padding: 0 0.5em;
+  font-size: 14px;
+  border: 1px solid #bec8de;
+  @media (min-width: 500px) {
+    font-size: 16px;
+  }
   th {
     width: 12em;
+    background: #3f517d;
+    color: whitesmoke;
+    padding: 5px;
+    border-spacing: 0;
+  }
+  td {
+    color: #172341;
+    padding: 5px 5px 5px 10px;
+  }
+  tr:nth-child(even) {
+    td {
+      background: whitesmoke;
+    }
+  }
+  tr:nth-child(odd) {
+    td {
+      background: #e3e3ea;
+    }
   }
 `;
 

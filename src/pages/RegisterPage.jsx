@@ -4,13 +4,24 @@ import UserKit from '../data/UserKit';
 import styled from 'styled-components';
 import { CenteredContainer } from '../components/global/GlobalStyledComponents';
 import RegisterForm from '../components/register_page/RegisterForm';
+import hero from '../assets/hero.jpg';
+const HeroImgContainer = styled.div`
+  background-image: url(${hero});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: calc(100vh - 3em);
+  padding-top: 3em;
+  width: 100vw;
+`;
 
 const ContentWrapper = styled(CenteredContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3em;
+  // margin-top: 3em;
   padding: 2em;
   width: 100vw;
   background: whitesmoke;
@@ -46,13 +57,15 @@ export default function RegisterPage() {
 
   return (
     <main>
-      <ContentWrapper>
-        <TopContent>
-          <Title>Register</Title>
-          <p>{registerMessage}</p>
-        </TopContent>
-        {!isRegistered && <RegisterForm setIsRegistered={setIsRegistered} setRegisterMessage={setRegisterMessage} />}
-      </ContentWrapper>
+      <HeroImgContainer>
+        <ContentWrapper>
+          <TopContent>
+            <Title>Register</Title>
+            <p>{registerMessage}</p>
+          </TopContent>
+          {!isRegistered && <RegisterForm setIsRegistered={setIsRegistered} setRegisterMessage={setRegisterMessage} />}
+        </ContentWrapper>
+      </HeroImgContainer>
     </main>
   );
 }

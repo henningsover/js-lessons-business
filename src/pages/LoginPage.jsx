@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import ActivateAccountSection from '../components/login_page/ActivateAccountSection';
 import LoginSection from '../components/login_page/LoginSection';
 import UserKit from '../data/UserKit';
+import hero from '../assets/hero.jpg';
+const HeroImgContainer = styled.div`
+  background-image: url(${hero});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: calc(100vh - 3em);
+  padding-top: 3em;
+  width: 100vw;
+`;
 
 export default function LoginPage() {
   const history = useHistory();
@@ -25,11 +37,13 @@ export default function LoginPage() {
 
   return (
     <main>
-      {uid && token ? (
-        <ActivateAccountSection uid={uid} setUid={setUid} token={token} setToken={setToken} />
-      ) : (
-        <LoginSection />
-      )}
+      <HeroImgContainer>
+        {uid && token ? (
+          <ActivateAccountSection uid={uid} setUid={setUid} token={token} setToken={setToken} />
+        ) : (
+          <LoginSection />
+        )}
+      </HeroImgContainer>
     </main>
   );
 }

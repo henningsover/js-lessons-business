@@ -9,7 +9,7 @@ const ContentWrapper = styled(CenteredContainer)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3em;
+  // margin-top: 3em;
   padding: 2em;
   width: 100vw;
   background: whitesmoke;
