@@ -15,7 +15,7 @@ const HeroImgContainer = styled.div`
 export default function StartPage() {
   return (
     <main>
-      <HeroImgContainer></HeroImgContainer>
+      <HeroImgContainer />
     </main>
   );
 }
