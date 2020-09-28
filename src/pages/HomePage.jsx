@@ -141,12 +141,10 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!userData) {
-    }
-    {
       getUser();
     }
-    // getCustomerList();
   }, []);
+
   useEffect(() => {
     if (!shouldShowCreateUserForm) {
       setCreateUserButtonMsg('Create customer');

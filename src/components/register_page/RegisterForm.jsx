@@ -61,10 +61,10 @@ export default function RegisterForm({ setIsRegistered, setRegisterMessage }) {
       type: 'text',
       placeholder: '8-16 characters, must contain numbers and letters',
       minLength: 8,
-      maxLength: 60,
+      maxLength: 16,
       state: password,
       setState: setPassword,
-      pattern: '[a-zA-Z0-9]{8,16}$',
+      pattern: '(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$',
     },
     {
       label: 'Organisation Name',
