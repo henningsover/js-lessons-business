@@ -144,7 +144,6 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
         .createCustomer(name, organisationNr, vatNr, reference, paymentTerm, website, email, phoneNumber)
         .then((res) => {
           if (res.ok) {
-            console.log('ok');
             setShouldLoadCustomerList(true);
             setShouldShowCreateUserForm(false);
             setName('');

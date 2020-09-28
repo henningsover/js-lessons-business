@@ -123,7 +123,6 @@ export default function HomePage() {
         } else {
           setCustomerList(null);
         }
-        console.log(data.results.length);
       });
   }
 
@@ -135,7 +134,6 @@ export default function HomePage() {
     if (shouldLoadCustomerList) {
       getCustomerList();
       setShouldLoadCustomerList(false);
-      console.log('Loaded customer list');
     }
   }, [shouldLoadCustomerList]);
 

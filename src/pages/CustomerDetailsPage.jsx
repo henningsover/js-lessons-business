@@ -123,7 +123,6 @@ export default function CustomerDetailsPage(props) {
       .then((res) => res.json())
       .then((data) => {
         setCurrentCustomer(data);
-        console.log(data);
       });
   }
 
@@ -140,7 +139,6 @@ export default function CustomerDetailsPage(props) {
     setCustomerArr(arrToRender);
   }
 
-  console.log(currentCustomer);
   return (
     <main>
       <CenteredContainer>
