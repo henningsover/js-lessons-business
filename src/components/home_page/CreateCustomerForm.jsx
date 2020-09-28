@@ -60,11 +60,13 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
       label: 'Org. Number',
       type: 'number',
       placeholder: '123...',
-      minLength: 1,
-      maxLength: 30,
+      minLength: null,
+      maxLength: null,
       state: organisationNr,
       setState: setOrganisationNr,
-      pattern: null,
+      pattern: '[0-9]{1,30}',
+      minValue: 1,
+      maxValue: 999999999999999999999999999999,
     },
     {
       label: 'VAT Number',
@@ -90,11 +92,13 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
       label: 'Payment Term',
       type: 'number',
       placeholder: '0-2147483647',
-      minLength: 1,
-      maxLength: 10,
+      minLength: null,
+      maxLength: null,
       state: paymentTerm,
       setState: setPaymentTerm,
       pattern: null,
+      minValue: 0,
+      maxValue: 2147483647,
     },
     {
       label: 'Website',
@@ -162,6 +166,8 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
   return (
     <CustomerForm onSubmit={handleSubmit}>
       {inputObjects.map((inputItem, index) => {
+        const minValue = inputItem.minValue ? inputItem.minValue : null;
+        const maxValue = inputItem.maxValue ? inputItem.maxValue : null;
         return buildKit.renderInput(
           index,
           inputItem.label,
@@ -171,7 +177,9 @@ export default function CreateCustomerForm({ setShouldShowCreateUserForm }) {
           inputItem.maxLength,
           inputItem.state,
           inputItem.setState,
-          inputItem.pattern
+          inputItem.pattern,
+          minValue,
+          maxValue
         );
       })}
       <AddCustomerButton type="submit">Add customer</AddCustomerButton>

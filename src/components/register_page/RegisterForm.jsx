@@ -78,13 +78,15 @@ export default function RegisterForm({ setIsRegistered, setRegisterMessage }) {
     },
     {
       label: 'Organisation Kind',
-      type: 'text',
+      type: 'number',
       placeholder: '(0,1 or 2)',
-      minLength: 0,
-      maxLength: 1,
+      minLength: null,
+      maxLength: null,
       state: organisationKind,
       setState: setOrganisationKind,
-      pattern: '[0-2]{1,2}',
+      pattern: null,
+      minValue: 0,
+      maxValue: 2,
     },
   ];
   function handleSubmit(event) {
@@ -100,6 +102,8 @@ export default function RegisterForm({ setIsRegistered, setRegisterMessage }) {
   return (
     <FormStyled onSubmit={handleSubmit}>
       {inputObjects.map((inputItem, index) => {
+        const minValue = inputItem.minValue ? inputItem.minValue : null;
+        const maxValue = inputItem.maxValue ? inputItem.maxValue : null;
         return buildKit.renderInput(
           index,
           inputItem.label,
@@ -109,7 +113,9 @@ export default function RegisterForm({ setIsRegistered, setRegisterMessage }) {
           inputItem.maxLength,
           inputItem.state,
           inputItem.setState,
-          inputItem.pattern
+          inputItem.pattern,
+          minValue,
+          maxValue
         );
       })}
       <SubmitButton type="submit">Register</SubmitButton>
