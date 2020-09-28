@@ -78,13 +78,13 @@ export default function RegisterForm({ setIsRegistered, setRegisterMessage }) {
     },
     {
       label: 'Organisation Kind',
-      type: 'number',
+      type: 'text',
       placeholder: '(0,1 or 2)',
-      minLength: 1,
+      minLength: 0,
       maxLength: 1,
       state: organisationKind,
       setState: setOrganisationKind,
-      pattern: null,
+      pattern: '[0-2]{1,2}',
     },
   ];
   function handleSubmit(event) {
